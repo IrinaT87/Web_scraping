@@ -24,12 +24,14 @@ vacancy_data=[]
 for vacancy in vacancy_list:
 
     vacancy_name=vacancy.find('a',class_='serp-item__title')
+    name=vacancy_name.text
     vacancy_link=vacancy_name['href']
     salary=vacancy.find('span',attrs={'data-qa': "vacancy-serp__vacancy-compensation"})
     salary = salary.text if salary else "Не указана"
     company_name=vacancy.find('a',attrs={'data-qa': 'vacancy-serp__vacancy-employer'}).text
     city=vacancy.find('div', attrs={'data-qa': 'vacancy-serp__vacancy-address'}).text
     vacancy_data.append({
+        "vacancy": name,
         "link": vacancy_link,
         "salary": salary,
         "company": company_name,
